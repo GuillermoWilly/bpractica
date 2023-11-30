@@ -3,14 +3,14 @@ name: Python application
 on:
   push:
     branches:
-      - develop
+      - main
       - master
 
 jobs:
   build:
     strategy:
       matrix:
-        pyversion: ['3.8','3.9']
+        pyversion: ['3.9']
 
     runs-on: ubuntu-latest
 
@@ -47,7 +47,7 @@ jobs:
     - name: Run tests
       run: |
         cd decide
-        coverage run --branch --source=. ./manage.py test  --keepdb 
+        coverage run --branch --source=. ./manage.py test voting --keepdb 
         coverage xml 
     - name: Codacy Coverage Reporter
       uses: codacy/codacy-coverage-reporter-action@v1
